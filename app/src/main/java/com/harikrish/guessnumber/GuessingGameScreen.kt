@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -22,6 +24,8 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,78 +37,85 @@ import com.harikrish.guessnumber.ui.theme.YellowDark
 
 @Composable
 fun GuessingGameScreen() {
+    Scaffold { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(BlueDark)
+                .padding(innerPadding)
+                .padding(16.dp)
+        ) {
+            Text(
+                text = buildAnnotatedString {
+                    append("Guess left: ")
+                    withStyle(style = SpanStyle(color = Color.White)) {
+                        append("5")
+                    }
+                },
+                color = YellowDark,
+                fontSize = 18.sp
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(BlueDark)
-            .padding(16.dp)
-    ) {
-        Text(
-            text = buildAnnotatedString {
-                append("Guess left: ")
-                withStyle(style = SpanStyle(color = Color.White)) {
-                    append("5")
+                listOf(25, 36, 96, 46).forEach { number ->
+                    Text(
+                        text = "$number",
+                        color = YellowDark,
+                        fontSize = 42.sp,
+                        modifier = Modifier.padding(end = 16.dp)
+                    )
                 }
-            },
-            color = YellowDark,
-            fontSize = 18.sp
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp),
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-
-            listOf(25, 36, 96, 46).forEach { number ->
-                Text(
-                    text = "$number",
-                    color = YellowDark,
-                    fontSize = 42.sp,
-                    modifier = Modifier.padding(end = 16.dp)
-                )
             }
-        }
-        Text(
-            text = "Hint\nYou are guessing bigger than the mystery number!",
-            color = Color.White,
-            fontSize = 22.sp,
-            textAlign = TextAlign.Center,
-            lineHeight = 30.sp,
-            fontStyle = FontStyle.Italic,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(modifier = Modifier.height(40.dp))
-
-        OutlinedTextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 40.dp),
-            value = "",
-            onValueChange = {},
-            textStyle = TextStyle(
+            Text(
+                text = "Hint\nYou are guessing bigger than the mystery number!",
+                color = Color.White,
+                fontSize = 22.sp,
                 textAlign = TextAlign.Center,
-                fontSize = 48.sp
-            ),
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.White,
-                focusedContainerColor = Color.Transparent
+                lineHeight = 30.sp,
+                fontStyle = FontStyle.Italic,
+                modifier = Modifier.fillMaxWidth()
             )
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-        Button(
-            modifier = Modifier
-                .align(Alignment.End)
-                .padding(end = 40.dp),
-            onClick = {},
-            colors = ButtonDefaults.buttonColors(
-                containerColor = YellowDark,
-                contentColor = Color.Black
+            Spacer(modifier = Modifier.height(40.dp))
+
+            OutlinedTextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 40.dp),
+                value = "",
+                onValueChange = {},
+
+                textStyle = TextStyle(
+                    textAlign = TextAlign.Center,
+                    fontSize = 48.sp
+                ),
+                colors = TextFieldDefaults.colors(
+                    unfocusedContainerColor = Color.White,
+                    focusedContainerColor = Color.Transparent
+                ),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Number,
+                    imeAction = ImeAction.Done
+                )
             )
-        ) {
-            Text(text = "GUESS", fontSize = 18.sp)
+            Spacer(modifier = Modifier.height(20.dp))
+            Button(
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(end = 40.dp),
+                onClick = {},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = YellowDark,
+                    contentColor = Color.Black
+                )
+            ) {
+                Text(text = "GUESS", fontSize = 18.sp)
+            }
         }
     }
 }
