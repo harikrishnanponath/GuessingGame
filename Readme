@@ -1,0 +1,21 @@
+🎯 Guessing Game - Jetpack Compose
+-------------------------------
+A simple number guessing game built with Jetpack Compose. The goal is to guess a randomly generated number between 0 and 100 within 5 attempts.
+
+✨ Features
+-------------------------------
+🎲 Random number generation between 0 and 100
+
+🔢 Maximum 5 attempts to guess the correct number
+
+📱 Modern Jetpack Compose UI
+
+🎨 Clean and minimal UI design
+
+🛠 Tech Stack
+-------------------------------
+* Kotlin
+
+* Jetpack Compose
+
+* State Management
