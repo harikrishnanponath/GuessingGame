@@ -69,7 +69,7 @@ fun WinOrLoseDialog(
             )
 
             Button(
-                onClick = { resetGame },
+                onClick =  resetGame ,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = BlueDark,
                     contentColor = Color.White
